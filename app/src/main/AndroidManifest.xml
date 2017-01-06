@@ -33,8 +33,9 @@
     <receiver
       android:name=".broadcastReceiver.NotificationReceiver"/>
 
+    <!-- BroadcastReceiver BootCompleteReceiver -->
     <receiver
-      android:name=".MyReceiver"
+      android:name=".broadcastReceiver.BootCompleteReceiver"
       android:enabled="true"
       android:exported="true" >
       <intent-filter>
