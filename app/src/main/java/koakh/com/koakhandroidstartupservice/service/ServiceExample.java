@@ -34,6 +34,9 @@ import koakh.com.koakhandroidstartupservice.R;
   //Notification
   private NotificationManager mNotificationManager;
   private Notification.Builder mNotificationBuilder;
+  //Runnable
+  private LenghtyOperationRunnable mLenghtyOperationRunnable;
+  private Thread mLenghtyOperationThread;
 
   @Override
   public void onCreate() {
@@ -55,6 +58,14 @@ import koakh.com.koakhandroidstartupservice.R;
     String message = "Service Destroyed";
     Log.d(mApp.TAG, message);
     if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    //Stop
+    if (mLenghtyOperationThread != null && mLenghtyOperationThread.isAlive()) {
+      mLenghtyOperationRunnable.setStop(true);
+      //Call Interrupt to stop Thread
+      mLenghtyOperationThread.interrupt();
+      mLenghtyOperationThread = null;
+    }
 
     //Disable Singleton IsServiceRunning
     mApp.setServiceRunning(false);
@@ -190,7 +201,12 @@ import koakh.com.koakhandroidstartupservice.R;
       .setContentText("test in progress...")
       .setSmallIcon(R.drawable.ic_download);
 
+    mLenghtyOperationRunnable = new LenghtyOperationRunnable(this);
+    mLenghtyOperationThread = new Thread(mLenghtyOperationRunnable);
+    mLenghtyOperationThread.start();
+
     // Start a lengthy operation in a background thread
+/*
     new Thread(
       new Runnable() {
         @Override
@@ -225,12 +241,14 @@ import koakh.com.koakhandroidstartupservice.R;
       }
       // Starts the thread by calling the run() method in its Runnable
     ).start();
+*/
+
   }
 
   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //Client Methods/ Called with bound Components
 
-  private void sendBroadcastMessage(int progress) {
+  public void sendBroadcastMessage(int progress) {
 
     //Test Send Broadcast to update Activity UI
     Intent broadcastIntent = new Intent(LOCAL_SERVICE_MESSAGE);
