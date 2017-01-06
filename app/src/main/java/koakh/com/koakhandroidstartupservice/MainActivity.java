@@ -290,6 +290,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
+
             Log.i(mApp.TAG, "ServiceConnected");
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             // Problem
@@ -303,6 +304,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+
             Log.i(mApp.TAG, "ServiceDisconnected");
             mBound = false;
         }

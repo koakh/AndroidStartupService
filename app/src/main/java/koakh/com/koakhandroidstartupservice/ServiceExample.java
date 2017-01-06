@@ -81,12 +81,8 @@ public class ServiceExample extends Service {
       Log.d(mApp.TAG, String.format("file: %s", fileList[i]));
     }
 
-    //Test Send Broadcast to update Activity UI
-    Intent broadcastIntent = new Intent(LOCAL_SERVICE_MESSAGE);
-    broadcastIntent.putExtra("currentSpeed", "currentSpeed...");
-    broadcastIntent.putExtra("latitude", "latitude...");
-    broadcastIntent.putExtra("longitude", "longitude...");
-    LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
+    //Send Initial Broadcast Message to Update Activity UI
+    //sendBroadcastMessage();
 
     //Launch a lengthy operation
     testProgressNotification();
@@ -185,7 +181,7 @@ public class ServiceExample extends Service {
     final NotificationManager notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     final Notification.Builder notificationBuilder = (new Notification.Builder(this));
 
-    notificationBuilder.setContentTitle("testProgressNotification")
+    notificationBuilder.setContentTitle("Service Sample : Test Long Progress")
       .setContentText("test in progress...")
       .setSmallIcon(R.drawable.ic_download);
 
@@ -203,6 +199,9 @@ public class ServiceExample extends Service {
             notificationBuilder.setProgress(100, incr, false);
             // Displays the progress bar for the first time.
             notifyManager.notify(mApp.NOTIFICATION_UNIQUE_ID, notificationBuilder.build());
+            //Send Initial Broadcast Message to Update Activity UI
+            sendBroadcastMessage();
+
             // Sleeps the thread, simulating an operation
             // that takes time
             try {
@@ -221,6 +220,19 @@ public class ServiceExample extends Service {
       }
       // Starts the thread by calling the run() method in its Runnable
     ).start();
+  }
+
+  //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //Client Methods/ Called with bound Components
+
+  private void sendBroadcastMessage() {
+
+    //Test Send Broadcast to update Activity UI
+    Intent broadcastIntent = new Intent(LOCAL_SERVICE_MESSAGE);
+    broadcastIntent.putExtra("currentSpeed", "currentSpeed...");
+    broadcastIntent.putExtra("latitude", "latitude...");
+    broadcastIntent.putExtra("longitude", "longitude...");
+    LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
   }
 
   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
