@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity
             Integer currentLongitude = intent.getIntExtra("longitude", 0);
 
             String message = String.format("%s/100 : %s : %s : %s",
-              progress,
+              String.format("Current Progress: %s/100%%", progress),
               currentSpeed.toString(),
               currentLatitude.toString(),
               currentLongitude.toString()

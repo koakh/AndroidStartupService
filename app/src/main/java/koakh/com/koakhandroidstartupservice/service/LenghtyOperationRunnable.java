@@ -37,12 +37,16 @@ class LenghtyOperationRunnable implements Runnable{
     while(!stop){
 
       int incr;
+
       // Do the "lengthy" operation 20 times/progress steps
       for (incr = 0; incr <= 100; incr += 5) {
         // Sets the progress indicator to a max value, the
-        // current completion percentage, and "determinate"
-        // state
-        mNotificationBuilder.setProgress(100, incr, false);
+        // current completion percentage, and "determinate" state
+        mNotificationBuilder
+          .setProgress(100, incr, false)
+          .setContentText(String.format("Current Progress: %s/100%%", incr))
+        ;
+
         // Displays the progress bar for the first time.
         mNotificationManager.notify(mApp.NOTIFICATION_UNIQUE_ID, mNotificationBuilder.build());
         //Send Initial Broadcast Message to Update Activity UI
@@ -60,6 +64,7 @@ class LenghtyOperationRunnable implements Runnable{
         // If Thread Stop Return For Loop
         if (stop) return;
       }
+
       // When the loop is finished, updates the notification
       mNotificationBuilder.setContentText("Operation complete")
         // Removes the progress bar
