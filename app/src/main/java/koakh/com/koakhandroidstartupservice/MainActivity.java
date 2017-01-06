@@ -321,12 +321,12 @@ public class MainActivity extends AppCompatActivity
 
             // Extract data included in the Intent
             String action = intent.getAction();
-            Integer progress = intent.getIntExtra("currentSpeed", 0);
-            Double currentSpeed = intent.getDoubleExtra("currentSpeed", 0);
-            Double currentLatitude = intent.getDoubleExtra("latitude", 0);
-            Double currentLongitude = intent.getDoubleExtra("longitude", 0);
+            Integer progress = intent.getIntExtra("progress", 0);
+            Integer currentSpeed = intent.getIntExtra("currentSpeed", 0);
+            Integer currentLatitude = intent.getIntExtra("latitude", 0);
+            Integer currentLongitude = intent.getIntExtra("longitude", 0);
 
-            String message = String.format("%s/100 : %s : %s :%s",
+            String message = String.format("%s/100 : %s : %s : %s",
               progress,
               currentSpeed.toString(),
               currentLatitude.toString(),
