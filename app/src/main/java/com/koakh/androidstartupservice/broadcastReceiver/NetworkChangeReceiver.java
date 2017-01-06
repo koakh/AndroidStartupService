@@ -1,12 +1,12 @@
-package koakh.com.koakhandroidstartupservice.broadcastReceiver;
+package com.koakh.androidstartupservice.broadcastReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import koakh.com.koakhandroidstartupservice.app.AppSingleton;
-import koakh.com.koakhandroidstartupservice.util.NetworkUtil;
+import com.koakh.androidstartupservice.app.AppSingleton;
+import com.koakh.androidstartupservice.util.NetworkUtil;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
 

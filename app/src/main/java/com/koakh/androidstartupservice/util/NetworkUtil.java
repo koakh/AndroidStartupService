@@ -1,10 +1,10 @@
-package koakh.com.koakhandroidstartupservice.util;
+package com.koakh.androidstartupservice.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import koakh.com.koakhandroidstartupservice.R;
+import com.koakh.androidstartupservice.R;
 
 //Android Internet Connection Status & Network Change Receiver Example
 //http://viralpatel.net/blogs/android-internet-connection-status-network-change/

@@ -1,10 +1,10 @@
-package koakh.com.koakhandroidstartupservice.service;
+package com.koakh.androidstartupservice.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.util.Log;
 
-import koakh.com.koakhandroidstartupservice.app.AppSingleton;
+import com.koakh.androidstartupservice.app.AppSingleton;
 
 /**
  * Created by mario.monteiro on 06/01/2017.

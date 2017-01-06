@@ -1,4 +1,4 @@
-package koakh.com.koakhandroidstartupservice;
+package com.koakh.androidstartupservice;
 
 import org.junit.Test;
 

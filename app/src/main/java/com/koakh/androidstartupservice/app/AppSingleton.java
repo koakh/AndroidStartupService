@@ -1,11 +1,11 @@
-package koakh.com.koakhandroidstartupservice.app;
+package com.koakh.androidstartupservice.app;
 
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 
-import koakh.com.koakhandroidstartupservice.ui.MainActivity;
+import com.koakh.androidstartupservice.ui.MainActivity;
 
 public class AppSingleton extends Application {
 

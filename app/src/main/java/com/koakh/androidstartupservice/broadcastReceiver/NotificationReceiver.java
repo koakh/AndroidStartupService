@@ -1,4 +1,4 @@
-package koakh.com.koakhandroidstartupservice.broadcastReceiver;
+package com.koakh.androidstartupservice.broadcastReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

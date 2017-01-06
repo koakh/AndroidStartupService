@@ -1,4 +1,4 @@
-  package koakh.com.koakhandroidstartupservice.service;
+  package com.koakh.androidstartupservice.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-import koakh.com.koakhandroidstartupservice.app.AppSingleton;
-import koakh.com.koakhandroidstartupservice.ui.MainActivity;
-import koakh.com.koakhandroidstartupservice.R;
+import com.koakh.androidstartupservice.app.AppSingleton;
+import com.koakh.androidstartupservice.ui.MainActivity;
+import com.koakh.androidstartupservice.R;
 
   public class ServiceExample extends Service {
 
