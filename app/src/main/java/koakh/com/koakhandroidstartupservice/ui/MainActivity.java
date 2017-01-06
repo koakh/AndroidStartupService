@@ -371,7 +371,7 @@ public class MainActivity extends AppCompatActivity
     public void updateUiComponentNetworkConnectionStatus() {
         String networkConnectionStatus = String.format(
           getResources().getString(R.string.global_label_network_connection_status),
-          mApp.getConnectivityStatus()
+          NetworkUtil.getConnectivityStatusString(this, mApp.getConnectivityStatus())
         );
         mTextViewNetworkConnectionStatus.setText(networkConnectionStatus);
     }

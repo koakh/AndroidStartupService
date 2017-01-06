@@ -11,9 +11,13 @@
     <string name="action_menu_service_call_method">Call Service Method</string>
 
     <string name="global_label_location_current_position">Current Position: %s</string>
-    <string name="global_label_network_connection_status">Network Connection Status: %d</string>
+    <string name="global_label_network_connection_status">Network Connection Status: %s</string>
 
     <string name="global_undefined">Undefined</string>
+
+    <string name="global_connectivity_status_wifi">WiFi</string>
+    <string name="global_connectivity_status_mobile">Mobile</string>
+    <string name="global_connectivity_status_not_connected">Disconnected</string>
 
     <string name="global_service_running">Running</string>
     <string name="global_service_action_info">Info</string>
