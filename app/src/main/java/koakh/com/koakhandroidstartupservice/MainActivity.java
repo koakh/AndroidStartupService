@@ -318,14 +318,16 @@ public class MainActivity extends AppCompatActivity
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
             // Extract data included in the Intent
             String action = intent.getAction();
-            Double currentSpeed = intent.getDoubleExtra("currentSpeed", 20);
+            Integer progress = intent.getIntExtra("currentSpeed", 0);
+            Double currentSpeed = intent.getDoubleExtra("currentSpeed", 0);
             Double currentLatitude = intent.getDoubleExtra("latitude", 0);
             Double currentLongitude = intent.getDoubleExtra("longitude", 0);
 
-            String message = String.format("action : %s : %s : %s :%s",
-              action,
+            String message = String.format("%s/100 : %s : %s :%s",
+              progress,
               currentSpeed.toString(),
               currentLatitude.toString(),
               currentLongitude.toString()

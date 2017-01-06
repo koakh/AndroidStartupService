@@ -200,7 +200,7 @@ public class ServiceExample extends Service {
             // Displays the progress bar for the first time.
             notifyManager.notify(mApp.NOTIFICATION_UNIQUE_ID, notificationBuilder.build());
             //Send Initial Broadcast Message to Update Activity UI
-            sendBroadcastMessage();
+            sendBroadcastMessage(incr);
 
             // Sleeps the thread, simulating an operation
             // that takes time
@@ -225,13 +225,14 @@ public class ServiceExample extends Service {
   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //Client Methods/ Called with bound Components
 
-  private void sendBroadcastMessage() {
+  private void sendBroadcastMessage(int progress) {
 
     //Test Send Broadcast to update Activity UI
     Intent broadcastIntent = new Intent(LOCAL_SERVICE_MESSAGE);
-    broadcastIntent.putExtra("currentSpeed", "currentSpeed...");
-    broadcastIntent.putExtra("latitude", "latitude...");
-    broadcastIntent.putExtra("longitude", "longitude...");
+    broadcastIntent.putExtra("progress", progress);
+    broadcastIntent.putExtra("currentSpeed", getRandomNumber());
+    broadcastIntent.putExtra("latitude", getRandomNumber());
+    broadcastIntent.putExtra("longitude", getRandomNumber());
     LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
   }
 
