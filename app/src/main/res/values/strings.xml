@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KoakhAndroidStartupService</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_menu_settings">Settings</string>
+    <string name="action_menu_service_start">Start Service</string>
+    <string name="action_menu_service_stop">Stop Service</string>
+    <string name="action_menu_service_call_method">Call Service Method</string>
+</resources>
