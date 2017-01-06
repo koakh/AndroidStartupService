@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">KoakhAndroidStartupService</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -8,6 +9,11 @@
     <string name="action_menu_service_start">Start Service</string>
     <string name="action_menu_service_stop">Stop Service</string>
     <string name="action_menu_service_call_method">Call Service Method</string>
+
+    <string name="global_label_location_current_position">Current Position: %s</string>
+    <string name="global_label_network_connection_status">Network Connection Status: %d</string>
+
+    <string name="global_undefined">Undefined</string>
 
     <string name="global_service_running">Running</string>
     <string name="global_service_action_info">Info</string>

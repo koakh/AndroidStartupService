@@ -24,9 +24,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import koakh.com.koakhandroidstartupservice.R;
 import koakh.com.koakhandroidstartupservice.app.AppSingleton;
 import koakh.com.koakhandroidstartupservice.service.ServiceExample;
+import koakh.com.koakhandroidstartupservice.util.NetworkUtil;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +46,9 @@ public class MainActivity extends AppCompatActivity
     private ServiceExample mService;
     private boolean mBound = false;
     //UI
-    private TextView mTextView;
+    private TextView mTextViewCurrentPosition;
+    private TextView mTextViewNetworkConnectionStatus;
+
     //Moke Data
     private String[] mFileList = {
       "/Articles/ArticleClassRepository",
@@ -96,13 +101,20 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Get Application Singleton
+        // Get Application Singleton
         mApp = AppSingleton.getInstance();
         mApp.setContext(this.getApplicationContext());
         mApp.setMainActivity(this);
 
-        //get UI Objects References
-        mTextView = (TextView)findViewById(R.id.main_textview);
+        // Get Network Connection Status
+        mApp.setConnectivityStatus(NetworkUtil.getConnectivityStatus(this));
+
+        // Get UI Objects References
+        mTextViewCurrentPosition = (TextView)findViewById(R.id.main_textview_current_position);
+        mTextViewNetworkConnectionStatus = (TextView)findViewById(R.id.main_textview_connectivity_status);
+
+        // Update UI
+        updateUiComponents();
 
         //Service Intent ServiceExample
         mIntentServiceExample = new Intent(this, ServiceExample.class);
@@ -338,8 +350,28 @@ public class MainActivity extends AppCompatActivity
             );
 
             Log.d(mApp.TAG, message);
-            mTextView.setText(message);
+            mTextViewCurrentPosition.setText(message);
         }
     };
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //UI
+
+    private void updateUiComponents() {
+
+        String currentPosition = String.format(
+          getResources().getString(R.string.global_label_location_current_position),
+          getResources().getString(R.string.global_undefined)
+        );
+        mTextViewCurrentPosition.setText(currentPosition);
+    }
+
+    public void updateUiComponentNetworkConnectionStatus() {
+        String networkConnectionStatus = String.format(
+          getResources().getString(R.string.global_label_network_connection_status),
+          mApp.getConnectivityStatus()
+        );
+        mTextViewNetworkConnectionStatus.setText(networkConnectionStatus);
+    }
 }
 

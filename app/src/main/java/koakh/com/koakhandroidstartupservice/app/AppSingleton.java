@@ -23,6 +23,8 @@ public class AppSingleton extends Application {
   //Notification
   private NotificationManager mNotificationManager;
   private Notification.Builder mNotificationBuilder;
+  //Network
+  private int mConnectivityStatus;
 
   @Override
   public void onCreate() {
@@ -79,5 +81,13 @@ public class AppSingleton extends Application {
 
   public void setNotificationBuilder(Notification.Builder notificationBuilder) {
     mNotificationBuilder = notificationBuilder;
+  }
+
+  public int getConnectivityStatus() {
+    return mConnectivityStatus;
+  }
+
+  public void setConnectivityStatus(int connectivityStatus) {
+    mConnectivityStatus = connectivityStatus;
   }
 }

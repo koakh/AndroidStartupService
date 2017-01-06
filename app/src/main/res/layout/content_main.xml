@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
@@ -12,12 +12,19 @@
   android:paddingTop="@dimen/activity_vertical_margin"
   app:layout_behavior="@string/appbar_scrolling_view_behavior"
   tools:context="koakh.com.koakhandroidstartupservice.ui.MainActivity"
+  android:orientation="vertical"
   tools:showIn="@layout/app_bar_main">
 
   <TextView
-    android:id="@+id/main_textview"
+    android:id="@+id/main_textview_current_position"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Hello World!"/>
+    android:text="@string/global_label_location_current_position"/>
 
-</RelativeLayout>
+  <TextView
+    android:id="@+id/main_textview_connectivity_status"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/global_label_network_connection_status"/>
+
+</LinearLayout>
