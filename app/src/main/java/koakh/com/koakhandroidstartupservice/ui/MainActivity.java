@@ -364,6 +364,8 @@ public class MainActivity extends AppCompatActivity
           getResources().getString(R.string.global_undefined)
         );
         mTextViewCurrentPosition.setText(currentPosition);
+
+        updateUiComponentNetworkConnectionStatus();
     }
 
     public void updateUiComponentNetworkConnectionStatus() {
