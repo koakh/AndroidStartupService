@@ -31,6 +31,9 @@ import koakh.com.koakhandroidstartupservice.R;
   private final IBinder mBinder = new LocalBinder();
   // Random number generator
   private final Random mGenerator = new Random();
+  //Notification
+  private NotificationManager mNotificationManager;
+  private Notification.Builder mNotificationBuilder;
 
   @Override
   public void onCreate() {
@@ -89,15 +92,12 @@ import koakh.com.koakhandroidstartupservice.R;
     //Send Initial Broadcast Message to Update Activity UI
     //sendBroadcastMessage();
 
-    //Launch a lengthy operation
-    testProgressNotification();
-
     //Initialize NotificationBuilder
-    NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-    Notification.Builder notificationBuilder = new Notification.Builder(mContext);
+    mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+    mNotificationBuilder = new Notification.Builder(mContext);
     //Assign local members to Application Singleton
-    mApp.setNotificationManager(notificationManager);
-    mApp.setNotificationBuilder(notificationBuilder);
+    mApp.setNotificationManager(mNotificationManager);
+    mApp.setNotificationBuilder(mNotificationBuilder);
 
     //Prepare PendingIntent to Call MainActivity, used to call activity when press notification
     Intent notificationIntent = new Intent(mContext, MainActivity.class);
@@ -105,7 +105,7 @@ import koakh.com.koakhandroidstartupservice.R;
     PendingIntent pendingIntent = PendingIntent.getActivity(mContext, (int) System.currentTimeMillis(), notificationIntent, 0);
 
     //Initialize Notification
-    notificationBuilder
+    mNotificationBuilder
       .setPriority(Notification.PRIORITY_HIGH)
       .setContentTitle(mContext.getString(R.string.app_name))
       .setContentText(mContext.getString(R.string.global_service_running))
@@ -114,10 +114,13 @@ import koakh.com.koakhandroidstartupservice.R;
     ;
 
     //Build Notification Object to Assign to OnBind
-    Notification notification = notificationBuilder.build();
+    Notification notification = mNotificationBuilder.build();
 
     //Start Service in ForeGround with OnGoing Notification
     startForeground(mApp.NOTIFICATION_UNIQUE_ID, notification);
+
+    //Launch a lengthy operation
+    testProgressNotification();
 
     // We want this service to continue running until it is explicitly
     // stopped, so return sticky.
@@ -182,10 +185,8 @@ import koakh.com.koakhandroidstartupservice.R;
    */
   public void testProgressNotification() {
 
-    final NotificationManager notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    final Notification.Builder notificationBuilder = (new Notification.Builder(this));
-
-    notificationBuilder.setContentTitle("Service Sample : Test Long Progress")
+    //Reuse and Change base Notification
+    mNotificationBuilder.setContentTitle("Service Sample : Test Long Progress")
       .setContentText("test in progress...")
       .setSmallIcon(R.drawable.ic_download);
 
@@ -200,9 +201,9 @@ import koakh.com.koakhandroidstartupservice.R;
             // Sets the progress indicator to a max value, the
             // current completion percentage, and "determinate"
             // state
-            notificationBuilder.setProgress(100, incr, false);
+            mNotificationBuilder.setProgress(100, incr, false);
             // Displays the progress bar for the first time.
-            notifyManager.notify(mApp.NOTIFICATION_UNIQUE_ID, notificationBuilder.build());
+            mNotificationManager.notify(mApp.NOTIFICATION_UNIQUE_ID, mNotificationBuilder.build());
             //Send Initial Broadcast Message to Update Activity UI
             sendBroadcastMessage(incr);
 
@@ -216,10 +217,10 @@ import koakh.com.koakhandroidstartupservice.R;
             }
           }
           // When the loop is finished, updates the notification
-          notificationBuilder.setContentText("Operation complete")
+          mNotificationBuilder.setContentText("Operation complete")
             // Removes the progress bar
             .setProgress(0, 0, false);
-          notifyManager.notify(mApp.NOTIFICATION_UNIQUE_ID, notificationBuilder.build());
+          mNotificationManager.notify(mApp.NOTIFICATION_UNIQUE_ID, mNotificationBuilder.build());
         }
       }
       // Starts the thread by calling the run() method in its Runnable
