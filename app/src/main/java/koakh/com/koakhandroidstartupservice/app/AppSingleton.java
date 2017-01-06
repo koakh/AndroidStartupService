@@ -1,7 +1,11 @@
-package koakh.com.koakhandroidstartupservice;
+package koakh.com.koakhandroidstartupservice.app;
 
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
+
+import koakh.com.koakhandroidstartupservice.ui.MainActivity;
 
 public class AppSingleton extends Application {
 
@@ -16,6 +20,9 @@ public class AppSingleton extends Application {
   //Service
   private boolean mIsServiceRunning = false;
   private boolean mIsServiceTaskLengthyOperationRunning = false;
+  //Notification
+  private NotificationManager mNotificationManager;
+  private Notification.Builder mNotificationBuilder;
 
   @Override
   public void onCreate() {
@@ -56,5 +63,21 @@ public class AppSingleton extends Application {
 
   public void setServiceTaskLengthyOperationRunning(boolean serviceTaskLengthyOperationRunning) {
     mIsServiceTaskLengthyOperationRunning = serviceTaskLengthyOperationRunning;
+  }
+
+  public NotificationManager getNotificationManager() {
+    return mNotificationManager;
+  }
+
+  public void setNotificationManager(NotificationManager notificationManager) {
+    mNotificationManager = notificationManager;
+  }
+
+  public Notification.Builder getNotificationBuilder() {
+    return mNotificationBuilder;
+  }
+
+  public void setNotificationBuilder(Notification.Builder notificationBuilder) {
+    mNotificationBuilder = notificationBuilder;
   }
 }

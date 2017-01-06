@@ -1,4 +1,4 @@
-package koakh.com.koakhandroidstartupservice;
+package koakh.com.koakhandroidstartupservice.ui;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -23,6 +23,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import koakh.com.koakhandroidstartupservice.R;
+import koakh.com.koakhandroidstartupservice.app.AppSingleton;
+import koakh.com.koakhandroidstartupservice.service.ServiceExample;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -338,3 +342,4 @@ public class MainActivity extends AppCompatActivity
         }
     };
 }
+

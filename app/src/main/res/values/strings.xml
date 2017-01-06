@@ -8,4 +8,10 @@
     <string name="action_menu_service_start">Start Service</string>
     <string name="action_menu_service_stop">Stop Service</string>
     <string name="action_menu_service_call_method">Call Service Method</string>
+
+    <string name="global_service_running">Running</string>
+    <string name="global_service_action_info">Info</string>
+    <string name="global_service_action_sync">Sync</string>
+    <string name="global_service_action_media">Media</string>
+
 </resources>

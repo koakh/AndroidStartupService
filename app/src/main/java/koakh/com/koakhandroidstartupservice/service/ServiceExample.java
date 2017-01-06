@@ -1,7 +1,8 @@
-  package koakh.com.koakhandroidstartupservice;
+  package koakh.com.koakhandroidstartupservice.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +15,11 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class ServiceExample extends Service {
+import koakh.com.koakhandroidstartupservice.app.AppSingleton;
+import koakh.com.koakhandroidstartupservice.ui.MainActivity;
+import koakh.com.koakhandroidstartupservice.R;
+
+  public class ServiceExample extends Service {
 
   // Constants
   public final static String LOCAL_SERVICE_MESSAGE = "serviceMessage";
@@ -87,13 +92,17 @@ public class ServiceExample extends Service {
     //Launch a lengthy operation
     testProgressNotification();
 
-/*
     //Initialize NotificationBuilder
     NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
     Notification.Builder notificationBuilder = new Notification.Builder(mContext);
     //Assign local members to Application Singleton
     mApp.setNotificationManager(notificationManager);
     mApp.setNotificationBuilder(notificationBuilder);
+
+    //Prepare PendingIntent to Call MainActivity, used to call activity when press notification
+    Intent notificationIntent = new Intent(mContext, MainActivity.class);
+    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    PendingIntent pendingIntent = PendingIntent.getActivity(mContext, (int) System.currentTimeMillis(), notificationIntent, 0);
 
     //Initialize Notification
     notificationBuilder
@@ -102,10 +111,6 @@ public class ServiceExample extends Service {
       .setContentText(mContext.getString(R.string.global_service_running))
       .setSmallIcon(R.drawable.ic_download)
       .setContentIntent(pendingIntent)
-      // Add media control buttons that invoke intents in your media service
-      .addAction(R.drawable.ic_info, getString(R.string.global_service_action_info), infoPendingIntent)
-      .addAction(R.drawable.ic_media, getString(R.string.global_service_action_media), mediaPendingIntent)
-      .addAction(R.drawable.ic_cloud, getString(R.string.global_service_action_sync), syncPendingIntent)
     ;
 
     //Build Notification Object to Assign to OnBind
@@ -117,10 +122,9 @@ public class ServiceExample extends Service {
     // We want this service to continue running until it is explicitly
     // stopped, so return sticky.
     return START_STICKY;
-*/
 
     //replaced with > return startForeground and START_STICKY;
-    return super.onStartCommand(intent, flags, startId);
+    //return super.onStartCommand(intent, flags, startId);
   }
 
   @Override
