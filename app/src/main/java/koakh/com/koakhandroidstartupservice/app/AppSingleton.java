@@ -11,6 +11,7 @@ public class AppSingleton extends Application {
 
   //Constants
   public final static String TAG = "KoakhStartupService";
+  public final static boolean SHOW_TOASTS = true;
   public final static int NOTIFICATION_UNIQUE_ID = 2800;
 
   //Singleton

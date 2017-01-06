@@ -19,7 +19,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
     mApp = AppSingleton.getInstance();
 
     String status = NetworkUtil.getConnectivityStatusString(context);
-    Toast.makeText(context, status, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(context, status, Toast.LENGTH_SHORT).show();
 
     // Update Singleton
     mApp.setConnectivityStatus(NetworkUtil.getConnectivityStatus(context));

@@ -45,7 +45,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service Created";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
 
   @Override
@@ -54,7 +54,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service Destroyed";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     //Disable Singleton IsServiceRunning
     mApp.setServiceRunning(false);
@@ -66,7 +66,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service Low Memory";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
 
   @Override
@@ -135,7 +135,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service onBind";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     return mBinder;
   }
@@ -145,7 +145,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service onUnbind";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     return super.onUnbind(intent);
   }
@@ -155,7 +155,7 @@ import koakh.com.koakhandroidstartupservice.R;
 
     String message = "Service onRebind";
     Log.d(mApp.TAG, message);
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    if (AppSingleton.SHOW_TOASTS) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     super.onRebind(intent);
   }
